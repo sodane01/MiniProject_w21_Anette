@@ -42,6 +42,7 @@ while(running)
                 SaveDevices.Save(devices);
                 break;
 
+
             case 2:
                 DisplayDevices display = new DisplayDevices();
                 display.displayDevices(devices);

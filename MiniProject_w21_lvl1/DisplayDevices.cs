@@ -1,39 +1,93 @@
-﻿class DisplayDevices
+﻿//class DisplayDevices
+//{
+//    public void displayDevices(List<Devices> devices)
+//    {
+//        Console.WriteLine();
+//Console.WriteLine("-------------------------------------------------------------------------------------");
+
+//Console.ForegroundColor = ConsoleColor.Green;
+//Console.WriteLine(
+
+//    $"{"Type",-15}" +
+//    $"{"Brand",-15}" +
+//    $"{"Model",-25}" +
+//    $"{"Purchase Date",-20:yyyy-MM-dd}" +
+//    $"{"Price (USD)",-15:C}" +
+//    $"{"Price (Local)",-15:C}" +
+//    $"{"Office Location",-20}");
+
+//Console.ResetColor();
+
+//Console.WriteLine("-------------------------------------------------------------------------------------");
+
+//foreach (var device in devices.OrderBy(d => d.type))
+//{
+//    Console.WriteLine(
+//        $"{device.type,-15}" +
+//        $"{device.brand,-15}" +
+//        $"{device.model,-25}" +
+//        $"{device.purchaseDate,-20:yyyy-MM-dd}" +
+//        $"{device.priceUSD,-150}" +
+//        $"{device.priceLocal,-15}" +
+//        $"{device.officeLocation,-20}");
+//}
+
+
+//Console.WriteLine("-------------------------------------------------------------------------------------");
+//    }
+//}
+
+class DisplayDevices
 {
     public void displayDevices(List<Devices> devices)
     {
         Console.WriteLine();
-Console.WriteLine("-------------------------------------------------------------------------------------");
 
-Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine(
+        Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------------");
 
-    $"{"Type",-15}" +
-    $"{"Brand",-15}" +
-    $"{"Model",-25}" +
-    $"{"Purchase Date",-20:yyyy-MM-dd}" +
-    $"{"Price (USD)",-15:C}" +
-    $"{"Price (Local)",-15:C}" +
-    $"{"Office Location",-20}");
+        Console.ForegroundColor = ConsoleColor.Green;
 
-Console.ResetColor();
+        Console.WriteLine(
+    $"{"Type",-15} " +
+    $"{"Brand",-15} " +
+    $"{"Model",-25} " +
+    $"{"Purchase Date",-10} " +
+    $"{"Price USD",15} " +
+    $"{"Local Price",20} " +
+    $"{"Office Location",20}");
 
-Console.WriteLine("-------------------------------------------------------------------------------------");
+        Console.ResetColor();
 
-foreach (var device in devices.OrderBy(d => d.type))
-{
-    Console.WriteLine(
-        $"{device.type,-15}" +
-        $"{device.brand,-15}" +
-        $"{device.model,-25}" +
-        $"{device.purchaseDate,-20:yyyy-MM-dd}" +
-        $"{device.priceUSD,-150}" +
-        $"{device.priceLocal,-15}" +
-        $"{device.officeLocation,-20}");
-}
+        Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------------");
 
+        foreach (var device in devices.OrderBy(d => d.type))
+        {
+            DateTime purchaseDate = DateTime.Parse(device.purchaseDate);
+            DateTime endOfLifeDate = purchaseDate.AddYears(3);
 
-Console.WriteLine("-------------------------------------------------------------------------------------");
+            TimeSpan timeLeft = endOfLifeDate - DateTime.Today;
+
+            if (timeLeft.TotalDays < 90)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else if (timeLeft.TotalDays < 180)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+            }
+
+            Console.WriteLine(
+                $"{device.type,-15} " +
+                $"{device.brand,-15} " +
+                $"{device.model,-30} " +
+                $"{device.purchaseDate,-18} " +
+                $"{device.priceUSD,15:C} " +
+                $"{device.priceLocal,20:C} " +
+                $"{device.officeLocation,-20}");
+
+            Console.ResetColor();
+        }
+        Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------------");
+
     }
 }
-

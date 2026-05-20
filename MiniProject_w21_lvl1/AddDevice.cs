@@ -17,27 +17,27 @@
 
         int choice = int.Parse(Console.ReadLine());
         string type = choice == 1 ? "Computer" : "Mobile";
+        choice = verify.verifyChoice(choice.ToString());
 
         Console.WriteLine("Enter device brand (e.g., Dell, Apple): ");
-        string brand = Console.ReadLine()?.Trim() ?? string.Empty; ;
-        //newDevices.Add(new Devices(type, brand, "", "", 0, 0, ""));
+        string brand = Console.ReadLine()?.Trim() ?? string.Empty;
+        brand = verify.verifyBrand(brand);
 
         Console.WriteLine("Enter device model (e.g., XPS 13, iPhone 13): ");
         string model = Console.ReadLine()?.Trim() ?? string.Empty;
-        //newDevices.Add(new Devices(type, brand, model, "", 0, 0, ""));
+        model = verify.verifyModel(model);
 
         Console.WriteLine("Enter purchase date (YYYY-MM-DD): ");
         string purchaseDate = Console.ReadLine()?.Trim() ?? string.Empty;
         purchaseDate = verify.verifyDate(purchaseDate);
-        //newDevices.Add(new Devices(type, brand, model, purchaseDate, 0, 0, ""));
 
         Console.WriteLine("Enter office location, Sweden, Turkey or USA: ");
         string officeLocation = Console.ReadLine()?.Trim() ?? string.Empty;
         officeLocation = verify.verifyOfficeLocation(officeLocation);
-        //newDevices.Add(new Devices(type, brand, model, purchaseDate, 0, 0, officeLocation));
 
         Console.WriteLine("Enter price in USD: ");
         decimal priceUSD = decimal.Parse(Console.ReadLine());
+        priceUSD = verify.verifyPrice(priceUSD.ToString());
         decimal localPrice = converter.convertToLocalCurrency(priceUSD, officeLocation);
         newDevices.Add(new Devices(type, brand, model, purchaseDate, priceUSD, localPrice, officeLocation));
 
