@@ -1,4 +1,4 @@
-﻿
+﻿using System.Linq;
 
 List<Devices> devices = new List<Devices>();
 //devices.Add(new Computer("Laptop", "Dell", "XPS 13", "2022-01-15", 1200.00m, 1500.00m, "New York"));
@@ -48,8 +48,8 @@ while(running)
                 display.displayDevices(devices);
                 break;
             case 3:
+                Console.WriteLine("Sorting selected...");
                 SortDevices.sortDevices(devices);
-
                 break;
             case 4:
                 //SearchDevices(devices);

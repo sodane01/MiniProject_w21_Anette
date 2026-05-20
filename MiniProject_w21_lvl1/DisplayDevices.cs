@@ -61,7 +61,7 @@ class DisplayDevices
 
         Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------");
 
-        foreach (var device in devices.OrderBy(d => d.type))
+        foreach (var device in devices)
         {
             DateTime purchaseDate = DateTime.Parse(device.purchaseDate);
             DateTime endOfLifeDate = purchaseDate.AddYears(3);
