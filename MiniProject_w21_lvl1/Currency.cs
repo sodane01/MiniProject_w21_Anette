@@ -2,12 +2,13 @@
 {
     public decimal convertToLocalCurrency(decimal value, string currency)
     {
+        currency = currency.Trim().ToLower();
 
         return currency switch
         {
-            "Sweden" => value * 10.5m, // Example conversion rate for SEK
-            "Turkey" => value * 27.0m,   // Example conversion rate for TRY
-            "USA" => value,              // USD remains the same
+            "sweden" => value * 10.5m,
+            "turkey" => value * 27.0m,
+            "usa" => value,
             _ => throw new ArgumentException("Invalid office location")
         };
     }

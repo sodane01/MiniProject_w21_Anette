@@ -1,6 +1,6 @@
 ﻿class AddDevice
 {
-
+    
     public List<Devices> addDevice(List<Devices> devices)
     {
         VerifyDevices verify = new VerifyDevices();
@@ -18,6 +18,10 @@
         int choice = int.Parse(Console.ReadLine());
         string type = choice == 1 ? "Computer" : "Mobile";
         choice = verify.verifyChoice(choice.ToString());
+
+        Console.WriteLine("Add id number:");
+        int id = int.Parse(Console.ReadLine());
+        id = verify.VerifyId(id.ToString(), devices);
 
         Console.WriteLine("Enter device brand (e.g., Dell, Apple): ");
         string brand = Console.ReadLine()?.Trim() ?? string.Empty;
@@ -39,7 +43,8 @@
         decimal priceUSD = decimal.Parse(Console.ReadLine());
         priceUSD = verify.verifyPrice(priceUSD.ToString());
         decimal localPrice = converter.convertToLocalCurrency(priceUSD, officeLocation);
-        newDevices.Add(new Devices(type, brand, model, purchaseDate, priceUSD, localPrice, officeLocation));
+        newDevices.Add(new Devices(id, type, brand, model, purchaseDate, priceUSD, localPrice, officeLocation));
+        //newDevices.Add(new Devices(type, brand, model, purchaseDate, priceUSD, localPrice, officeLocation));
 
 
 

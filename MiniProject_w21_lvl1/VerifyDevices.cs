@@ -18,6 +18,25 @@
     //    }
     //    return type;
     //}
+
+    public int VerifyId(string idInput, List<Devices> devices)
+    {
+        if (!int.TryParse(idInput, out int id))
+        {
+            Console.WriteLine("Invalid ID format. Please enter a valid integer.");
+            return -1;
+        }
+
+        bool idExists = devices.Any(d => d.id == id);
+
+        if (idExists)
+        {
+            Console.WriteLine("This ID already exists.");
+            return -1;
+        }
+
+        return id;
+    }
     public int verifyChoice(string choiceInput)
     {
         if (!int.TryParse(choiceInput, out int choice) || (choice != 1 && choice != 2))
@@ -50,11 +69,19 @@
     {
         while (true)
         {
-            if (officeLocation.Equals("Sweden", StringComparison.OrdinalIgnoreCase) ||
-                officeLocation.Equals("Turkey", StringComparison.OrdinalIgnoreCase) ||
-                officeLocation.Equals("USA", StringComparison.OrdinalIgnoreCase))
+            if (officeLocation.Equals("Sweden", StringComparison.OrdinalIgnoreCase))
             {
-                return officeLocation;
+                return "Sweden";
+            }
+
+            if (officeLocation.Equals("Turkey", StringComparison.OrdinalIgnoreCase))
+            {
+                return "Turkey";
+            }
+
+            if (officeLocation.Equals("USA", StringComparison.OrdinalIgnoreCase))
+            {
+                return "USA";
             }
 
             Console.WriteLine("Invalid office location. Enter Sweden, Turkey or USA:");

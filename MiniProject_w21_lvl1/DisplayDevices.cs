@@ -43,22 +43,23 @@ class DisplayDevices
     {
         Console.WriteLine();
 
-        Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------------");
+        Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------");
 
         Console.ForegroundColor = ConsoleColor.Green;
 
         Console.WriteLine(
-    $"{"Type",-15} " +
-    $"{"Brand",-15} " +
-    $"{"Model",-25} " +
-    $"{"Purchase Date",-10} " +
-    $"{"Price USD",15} " +
-    $"{"Local Price",20} " +
-    $"{"Office Location",20}");
+            $"{"Id",-5} " +
+            $"{"Type",-15} " +
+            $"{"Brand",-15} " +
+            $"{"Model",-25} " +
+            $"{"Purchase Date",-10} " +
+            $"{"Price USD",15} " +
+            $"{"Local Price",20} " +
+            $"{"Office Location",20}");
 
         Console.ResetColor();
 
-        Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------------");
+        Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------");
 
         foreach (var device in devices.OrderBy(d => d.type))
         {
@@ -77,17 +78,21 @@ class DisplayDevices
             }
 
             Console.WriteLine(
+                $"{device.id,-5} " +
                 $"{device.type,-15} " +
                 $"{device.brand,-15} " +
-                $"{device.model,-30} " +
-                $"{device.purchaseDate,-18} " +
-                $"{device.priceUSD,15:C} " +
-                $"{device.priceLocal,20:C} " +
-                $"{device.officeLocation,-20}");
+                $"{device.model,-25} " +
+                $"{device.purchaseDate,-10} " +
+                $"{device.priceUSD,15} " +
+                $"{device.priceLocal,20} " +
+                $"{device.officeLocation,20}");
 
             Console.ResetColor();
         }
-        Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------------");
+        Console.WriteLine();
+        Console.WriteLine();
+
+        //Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------------");
 
     }
 }
