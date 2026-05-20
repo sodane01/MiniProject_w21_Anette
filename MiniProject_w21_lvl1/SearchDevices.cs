@@ -8,7 +8,8 @@
         if (results.Count > 0)
         {
             Console.WriteLine($"Found {results.Count} device(s) of type '{searchType}':");
-            DisplayDevices.Display(results);
+            DisplayDevices display = new DisplayDevices();
+            display.displayDevices(results);
         }
         else
         {

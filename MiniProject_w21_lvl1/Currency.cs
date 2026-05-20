@@ -1,27 +1,14 @@
 ﻿class Currency
 {
-    public static decimal ConvertToLocalCurrency(decimal priceUSD, decimal exchangeRate)
+    public decimal convertToLocalCurrency(decimal value, string currency)
     {
-        return priceUSD * exchangeRate;
+
+        return currency switch
+        {
+            "Sweden" => value * 10.5m, // Example conversion rate for SEK
+            "Turkey" => value * 27.0m,   // Example conversion rate for TRY
+            "USA" => value,              // USD remains the same
+            _ => throw new ArgumentException("Invalid office location")
+        };
     }
 }
-//switch (input)
-//{
-//    case 1:
-//        AddDevice();
-//        break;
-
-//    case 2:
-//        DisplayDevices(devices);
-//        break;
-//    case 3:
-//        Sort();
-//        break; 
-//    case 4:
-//        SearchDevices(devices);
-//        break;
-//    case 5:
-//        Environment.Exit(0);
-//        break;
-//}
-

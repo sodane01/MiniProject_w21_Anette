@@ -1,6 +1,6 @@
 ﻿class DisplayDevices
 {
-    public static void Display(List<Devices> devices)
+    public void displayDevices(List<Devices> devices)
     {
         Console.WriteLine();
 Console.WriteLine("-------------------------------------------------------------------------------------");
@@ -27,8 +27,8 @@ foreach (var device in devices.OrderBy(d => d.type))
         $"{device.brand,-15}" +
         $"{device.model,-25}" +
         $"{device.purchaseDate,-20:yyyy-MM-dd}" +
-        $"{device.priceUSD,-15:C}" +
-        $"{device.priceLocal,-15:C}" +
+        $"{device.priceUSD,-150}" +
+        $"{device.priceLocal,-15}" +
         $"{device.officeLocation,-20}");
 }
 
