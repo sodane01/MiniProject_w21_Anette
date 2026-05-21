@@ -3,7 +3,7 @@
 
     public List<Devices> addDevice(List<Devices> devices)
     {
-        VerifyDevices verify = new VerifyDevices();
+        ValidateDevices verify = new ValidateDevices();
 
         List<Devices> newDevices = new List<Devices>();
 
@@ -17,31 +17,31 @@
 
         int choice = int.Parse(Console.ReadLine());
         string type = choice == 1 ? "Computer" : "Mobile";
-        choice = verify.verifyChoice(choice.ToString());
+        choice = verify.validateChoice(choice.ToString());
 
         Console.WriteLine("Add id number:");
         int id = int.Parse(Console.ReadLine());
-        id = verify.VerifyId(id.ToString(), devices);
+        id = verify.validateId(id.ToString(), devices);
 
         Console.WriteLine("Enter device brand (e.g., Dell, Apple): ");
         string brand = Console.ReadLine()?.Trim() ?? string.Empty;
-        brand = verify.verifyBrand(brand);
+        brand = verify.validateBrand(brand);
 
         Console.WriteLine("Enter device model (e.g., XPS 13, iPhone 13): ");
         string model = Console.ReadLine()?.Trim() ?? string.Empty;
-        model = verify.verifyModel(model);
+        model = verify.validateModel(model);
 
         Console.WriteLine("Enter purchase date (YYYY-MM-DD): ");
         string purchaseDate = Console.ReadLine()?.Trim() ?? string.Empty;
-        purchaseDate = verify.verifyDate(purchaseDate);
+        purchaseDate = verify.validateDate(purchaseDate);
 
         Console.WriteLine("Enter office location, Sweden, Turkey or USA: ");
         string officeLocation = Console.ReadLine()?.Trim() ?? string.Empty;
-        officeLocation = verify.verifyOfficeLocation(officeLocation);
+        officeLocation = verify.validateOfficeLocation(officeLocation);
 
         Console.WriteLine("Enter price in USD: ");
         decimal priceUSD = decimal.Parse(Console.ReadLine());
-        priceUSD = verify.verifyPrice(priceUSD.ToString());
+        priceUSD = verify.validatePrice(priceUSD.ToString());
         decimal localPrice = converter.convertToLocalCurrency(priceUSD, officeLocation);
         newDevices.Add(new Devices(id, type, brand, model, purchaseDate, priceUSD, localPrice, officeLocation));
         //newDevices.Add(new Devices(type, brand, model, purchaseDate, priceUSD, localPrice, officeLocation));

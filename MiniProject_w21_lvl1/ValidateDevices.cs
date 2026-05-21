@@ -1,4 +1,4 @@
-﻿class VerifyDevices
+﻿class ValidateDevices
 {
     public static void verifyDevices(List<Devices> devices)
     {
@@ -19,25 +19,28 @@
     //    return type;
     //}
 
-    public int VerifyId(string idInput, List<Devices> devices)
+    public int validateId(string idInput, List<Devices> devices)
     {
-        if (!int.TryParse(idInput, out int id))
+        while (true)
         {
-            Console.WriteLine("Invalid ID format. Please enter a valid integer.");
-            return -1;
+            if (!int.TryParse(idInput, out int id))
+            {
+                Console.WriteLine("Invalid ID format. Please enter a valid integer.");
+            }
+            else if (devices.Any(d => d.id == id))
+            {
+                Console.WriteLine("This ID already exists.");
+            }
+            else
+            {
+                return id;
+            }
+
+            Console.Write("Enter another ID: ");
+            idInput = Console.ReadLine()?.Trim() ?? "";
         }
-
-        bool idExists = devices.Any(d => d.id == id);
-
-        if (idExists)
-        {
-            Console.WriteLine("This ID already exists.");
-            return -1;
-        }
-
-        return id;
     }
-    public int verifyChoice(string choiceInput)
+    public int validateChoice(string choiceInput)
     {
         if (!int.TryParse(choiceInput, out int choice) || (choice != 1 && choice != 2))
         {
@@ -47,7 +50,7 @@
         return choice;
     }
 
-    public decimal verifyPrice(string priceInput)
+    public decimal validatePrice(string priceInput)
     {
         if (!decimal.TryParse(priceInput, out decimal price))
         {
@@ -56,7 +59,7 @@
         }
         return price;
     }
-    public string verifyDate(string dateInput)
+    public string validateDate(string dateInput)
     {
         if (!DateTime.TryParse(dateInput, out DateTime purchaseDate))
         {
@@ -65,7 +68,7 @@
         }
         return purchaseDate.ToString("yyyy-MM-dd");
     }
-    public string verifyOfficeLocation(string officeLocation)
+    public string validateOfficeLocation(string officeLocation)
     {
         while (true)
         {
@@ -89,7 +92,7 @@
             officeLocation = Console.ReadLine()?.Trim() ?? "";
         }
     }
-    public string verifyBrand(string brand)
+    public string validateBrand(string brand)
     {
         if (string.IsNullOrWhiteSpace(brand))
         {
@@ -98,7 +101,7 @@
         }
         return brand;
     }
-    public string verifyModel(string model)
+    public string validateModel(string model)
     {
         if (string.IsNullOrWhiteSpace(model))
         {
