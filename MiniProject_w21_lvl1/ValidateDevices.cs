@@ -145,5 +145,31 @@
             model = Console.ReadLine()?.Trim() ?? "";
         }
     }
+    public int ValidateExistingId(string input, List<Devices> devices)
+    {
+        while (true)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine("ID cannot be empty.");
+            }
+            else if (!int.TryParse(input, out int id))
+            {
+                Console.WriteLine("Invalid ID format.");
+            }
+            else if (!devices.Any(d => d.id == id))
+            {
+                Console.WriteLine("No device found with that ID.");
+            }
+            else
+            {
+                return id;
+            }
+
+            Console.Write("Enter ID again: ");
+
+            input = Console.ReadLine()?.Trim() ?? "";
+        }
+    }
 
 }

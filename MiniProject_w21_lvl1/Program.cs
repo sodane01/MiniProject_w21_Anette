@@ -27,7 +27,9 @@ while(running)
     Console.WriteLine("3. Sort devices");
     Console.WriteLine("4. Search devices");
     Console.WriteLine("5. Export to file");
-    Console.WriteLine("6. Exit");
+    Console.WriteLine("6. Edit devices");
+    Console.WriteLine("7. Remove devices");
+    Console.WriteLine("8. Exit");
     Console.WriteLine();
 
     Console.Write("Enter your choice: ");
@@ -100,6 +102,17 @@ while(running)
 
                 break;
             case 6:
+                EditDevice edit = new EditDevice();
+                edit.Edit(devices);
+                SaveDevices.Save(devices);
+                break;
+
+            case 7:
+                RemoveDevice remove = new RemoveDevice();
+                remove.Remove(devices);
+                SaveDevices.Save(devices);
+                break;
+            case 8:
                 Console.WriteLine("Exiting the program...");
                 running = false;
                 break;
@@ -110,4 +123,3 @@ interface IDeviceExporter
 {
     void Export(List<Devices> devices, string filePath);
 }
-
