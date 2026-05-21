@@ -26,7 +26,8 @@ while(running)
     Console.WriteLine("2. Display devices");
     Console.WriteLine("3. Sort devices");
     Console.WriteLine("4. Search devices");
-    Console.WriteLine("5. Exit");
+    Console.WriteLine("5. Export to file");
+    Console.WriteLine("6. Exit");
     Console.WriteLine();
 
     Console.Write("Enter your choice: ");
@@ -55,8 +56,58 @@ while(running)
                 //SearchDevices(devices);
                 break;
             case 5:
+            //ExportToCSV export = new ExportToCSV();
+            //export.Export(devices);
+            //break;
+
+                Console.WriteLine("Choose export format:");
+                Console.WriteLine("1. CSV");
+                Console.WriteLine("2. JSON");
+                Console.WriteLine("3. XML");
+
+                string exportChoice = Console.ReadLine()?.Trim() ?? "";
+
+                IDeviceExporter? exporter = null;
+
+                switch (exportChoice)
+                {
+                    case "1":
+                        exporter = new CsvExporter();
+                        break;
+
+                    case "2":
+                        exporter = new JsonExporter();
+                        break;
+
+                    case "3":
+                        exporter = new XmlExporter();
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid export choice.");
+                        break;
+                }
+
+                if (exporter != null)
+                {
+                    Console.Write("Enter file name: ");
+
+                    string fileName =
+                        Console.ReadLine()?.Trim() ?? "devices";
+
+                    exporter.Export(devices, fileName);
+                }
+
+                break;
+            case 6:
+                Console.WriteLine("Exiting the program...");
                 running = false;
                 break;
         }
     }
 }
+interface IDeviceExporter
+{
+    void Export(List<Devices> devices, string filePath);
+}
+

@@ -1,5 +1,9 @@
-﻿class Computer : Devices
+﻿public class Computer : Devices
 {
+
+    public Computer()
+    {
+    }
     public Computer(int id, string type, string brand, string model, string purchaseDate, decimal priceUSD, decimal priceLocal, string officeLocation) : base(id, type, brand, model, purchaseDate, priceUSD, priceLocal, officeLocation)
     {
     }

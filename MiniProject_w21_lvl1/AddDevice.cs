@@ -1,6 +1,6 @@
 ﻿class AddDevice
 {
-    
+
     public List<Devices> addDevice(List<Devices> devices)
     {
         VerifyDevices verify = new VerifyDevices();
@@ -52,7 +52,7 @@
         //devices.Add(newDevice);
         Console.WriteLine("Device added successfully!");
         return newDevices;
-        
+
     }
 
 }

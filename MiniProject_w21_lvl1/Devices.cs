@@ -1,45 +1,25 @@
-﻿//class Devices
-//{
-//    public string type;
-//    public string brand;
-//    public string model;
-//    public string purchaseDate;
-//    public Decimal priceUSD;
-//    public Decimal priceLocal;
-//    public string officeLocation;
+﻿
+using System.Xml.Serialization;
 
-//    public Devices(string type, string brand, string model, string purchaseDate, decimal priceUSD, decimal priceLocal, string officeLocation)
-//    {
-//        this.type = type;
-//        this.brand = brand;
-//        this.model = model;
-//        this.purchaseDate = purchaseDate;
-//        this.priceUSD = priceUSD;
-//        this.priceLocal = priceLocal;
-//        this.officeLocation = officeLocation;
-//    }
-//}
-
-class Devices
+[XmlInclude(typeof(Computer))]
+[XmlInclude(typeof(Mobile))]
+public class Devices
 {
-    public int id;
-    public string type;
-    public string brand;
-    public string model;
-    public string purchaseDate;
-    public decimal priceUSD;
-    public decimal priceLocal;
-    public string officeLocation;
+    public int id { get; set; }
+    public string type { get; set; }
+    public string brand { get; set; }
+    public string model { get; set; }
+    public string purchaseDate { get; set; }
+    public decimal priceUSD { get; set; }
+    public decimal priceLocal { get; set; }
+    public string officeLocation { get; set; }
 
-    public Devices(
-        int id,
-        string type,
-        string brand,
-        string model,
-        string purchaseDate,
-        decimal priceUSD,
-        decimal priceLocal,
-        string officeLocation)
+    public Devices()
+    {
+    }
+
+    public Devices(int id, string type, string brand, string model, string purchaseDate,
+        decimal priceUSD, decimal priceLocal, string officeLocation)
     {
         this.id = id;
         this.type = type;
