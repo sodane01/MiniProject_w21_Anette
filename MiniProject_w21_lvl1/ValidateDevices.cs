@@ -1,6 +1,6 @@
 ﻿class ValidateDevices
 {
-    public static void verifyDevices(List<Devices> devices)
+    public static void validateDevices(List<Devices> devices)
     {
         if (devices.Count == 0)
         {
@@ -19,7 +19,7 @@
     //    return type;
     //}
 
-    public int validateId(string idInput, List<Devices> devices)
+    public int ValidateId(string idInput, List<Devices> devices)
     {
         while (true)
         {
@@ -40,7 +40,7 @@
             idInput = Console.ReadLine()?.Trim() ?? "";
         }
     }
-    public int validateChoice(string choiceInput)
+    public int ValidateChoice(string choiceInput)
     {
         if (!int.TryParse(choiceInput, out int choice) || (choice != 1 && choice != 2))
         {
@@ -50,25 +50,46 @@
         return choice;
     }
 
-    public decimal validatePrice(string priceInput)
+    public decimal ValidatePrice(string input)
     {
-        if (!decimal.TryParse(priceInput, out decimal price))
+        while (true)
         {
-            Console.WriteLine("Invalid price format. Please enter a valid decimal number.");
-            return -1;
+            if (decimal.TryParse(input, out decimal price) &&
+                price > 0)
+            {
+                return price;
+            }
+
+            Console.WriteLine("Invalid price.");
+
+            Console.Write("Enter price again: ");
+
+            input = Console.ReadLine()?.Trim() ?? "";
         }
-        return price;
     }
-    public string validateDate(string dateInput)
+    public string ValidateDate(string dateInput)
     {
-        if (!DateTime.TryParse(dateInput, out DateTime purchaseDate))
+        while (true)
         {
-            Console.WriteLine("Invalid date format. Please enter a valid date (YYYY-MM-DD).");
-            return string.Empty;
+            if (string.IsNullOrEmpty(dateInput))
+            {
+                Console.WriteLine("Date cannot be empty.");
+            }
+            else if (DateTime.TryParse(dateInput, out DateTime purchaseDate))
+            {
+                return purchaseDate.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                Console.WriteLine("Invalid date format. Please enter a valid date (YYYY-MM-DD).");
+            }
+
+            Console.Write("Enter purchase date again: ");
+            Console.WriteLine();
+            dateInput = Console.ReadLine()?.Trim() ?? "";
         }
-        return purchaseDate.ToString("yyyy-MM-dd");
     }
-    public string validateOfficeLocation(string officeLocation)
+    public string ValidateOfficeLocation(string officeLocation)
     {
         while (true)
         {
@@ -92,22 +113,37 @@
             officeLocation = Console.ReadLine()?.Trim() ?? "";
         }
     }
-    public string validateBrand(string brand)
+    public string ValidateBrand(string brand)
     {
-        if (string.IsNullOrWhiteSpace(brand))
+        while (true)
         {
-            Console.WriteLine("Brand cannot be empty. Please enter a valid brand.");
-            return string.Empty;
+            if (!string.IsNullOrWhiteSpace(brand))
+            {
+                return brand;
+            }
+
+            Console.WriteLine("Brand cannot be empty.");
+
+            Console.Write("Enter brand again: ");
+
+            brand = Console.ReadLine()?.Trim() ?? "";
         }
-        return brand;
     }
-    public string validateModel(string model)
+    public string ValidateModel(string model)
     {
-        if (string.IsNullOrWhiteSpace(model))
+        while (true)
         {
-            Console.WriteLine("Model cannot be empty. Please enter a valid model.");
-            return string.Empty;
+            if (!string.IsNullOrWhiteSpace(model))
+            {
+                return model;
+            }
+
+            Console.WriteLine("Model cannot be empty.");
+
+            Console.Write("Enter model again: ");
+
+            model = Console.ReadLine()?.Trim() ?? "";
         }
-        return model;
     }
+
 }

@@ -38,7 +38,7 @@ while(running)
         {
             case 1:
                 AddDevice add = new AddDevice();
-                List<Devices> newDevices = add.addDevice(devices);
+                List<Devices> newDevices = add.AddDevices(devices);
                 devices.AddRange(newDevices);
                 SaveDevices.Save(devices);
                 break;
